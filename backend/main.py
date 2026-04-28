@@ -57,12 +57,25 @@ class CompareRequest(BaseModel):
 
 @app.get("/health")
 def health_check():
-    """Health check endpoint."""
-    has_key = bool(os.environ.get("GEMINI_API_KEY")) and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here"
+    """Health check endpoint — reports active LLM provider."""
+    provider = os.environ.get("LLM_PROVIDER", "gemini").lower()
+
+    if provider == "openrouter":
+        has_key = bool(os.environ.get("OPENROUTER_API_KEY")) and os.environ.get("OPENROUTER_API_KEY") != "your_openrouter_api_key_here"
+        compare_model = os.environ.get("OPENROUTER_COMPARE_MODEL", "nvidia/llama-3.3-nemotron-super-120b-instruct:free")
+        assistant_model = os.environ.get("OPENROUTER_ASSISTANT_MODEL", "google/gemma-3-27b-it:free")
+    else:
+        has_key = bool(os.environ.get("GEMINI_API_KEY")) and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here"
+        compare_model = "gemini-1.5-pro"
+        assistant_model = "gemini-2.5-flash"
+
     return {
         "status": "ok",
-        "service": "Mumzworld AI Shopping Assistant",
+        "service": "Mumzworld AI Copilot",
         "ai_ready": has_key,
+        "provider": provider,
+        "compare_model": compare_model,
+        "assistant_model": assistant_model,
     }
 
 
