@@ -102,10 +102,16 @@ Users select 2–5 products, describe their needs, and the AI generates a **grou
 │             │                         │                  │
 │             ▼                         ▼                  │
 │  ┌────────────────────────────────────────────────────┐  │
-│  │           Gemini API (Structured Output)           │  │
-│  │  Compare: gemini-1.5-pro (deep reasoning)          │  │
-│  │  Assistant: gemini-2.5-flash (speed)               │  │
-│  │  Output: Pydantic schema enforcement               │  │
+│  │           Multi-Provider LLM Gateway               │  │
+│  │  ───────────────────────────────────────────       │  │
+│  │  • Provider A: Gemini (Direct SDK)                 │  │
+│  │  • Provider B: OpenRouter (OpenAI SDK)             │  │
+│  │                                                    │  │
+│  │  Models Supported (Selectable via UI):             │  │
+│  │  - Gemini 3.1 Pro / 2.5 Flash                      │  │
+│  │  - Claude 4.6 Sonnet                               │  │
+│  │  - Qwen 3.5 Plus                                   │  │
+│  │  - Llama 3.3 Nemotron                              │  │
 │  └────────────────────────────────────────────────────┘  │
 │                                                          │
 │  ┌────────────────────────────────────────────────────┐  │
