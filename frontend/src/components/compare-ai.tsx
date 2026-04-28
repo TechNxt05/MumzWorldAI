@@ -22,7 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { getProducts, sendCompareRequest, type Product, type ComparisonResponse } from "@/lib/api";
 
-export function CompareAI() {
+export function CompareAI({ selectedModel }: { selectedModel?: string }) {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [intent, setIntent] = useState("");
@@ -53,7 +53,7 @@ export function CompareAI() {
     setError(null);
     setResult(null);
     try {
-      const data = await sendCompareRequest(selectedIds, intent);
+      const data = await sendCompareRequest(selectedIds, intent, selectedModel);
       setResult(data);
     } catch (e: any) {
       setError(e.message || "Something went wrong");

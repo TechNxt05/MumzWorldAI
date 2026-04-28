@@ -38,7 +38,7 @@ const SAMPLE_PROMPTS = [
   "My toddler is starting daycare next month, what do I need?",
 ];
 
-export function ShoppingAssistant() {
+export function ShoppingAssistant({ selectedModel }: { selectedModel?: string }) {
   const [input, setInput] = useState("");
   const [imageBase64, setImageBase64] = useState<string | null>(null);
   const [imageName, setImageName] = useState<string | null>(null);
@@ -96,7 +96,8 @@ export function ShoppingAssistant() {
     try {
       const data = await sendChatRequest(
         input || "Analyze this product image",
-        imageBase64
+        imageBase64,
+        selectedModel
       );
       setResult(data);
     } catch (e: any) {

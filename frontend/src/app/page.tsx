@@ -1,15 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { Baby, Languages, Moon, Sun, Scale, ShoppingBag } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Baby, Languages, Moon, Sun, Scale, ShoppingBag, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CompareAI } from "@/components/compare-ai";
 import { ShoppingAssistant } from "@/components/shopping-assistant";
+import { getModels, type LLMModel } from "@/lib/api";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"compare" | "assistant">("compare");
   const [showArabic, setShowArabic] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [models, setModels] = useState<LLMModel[]>([]);
+  const [selectedModel, setSelectedModel] = useState<string>("");
+
+  useEffect(() => {
+    getModels().then((data) => {
+      setModels(data);
+      if (data.length > 0) setSelectedModel(data[0].id);
+    }).catch(console.error);
+  }, []);
 
   const toggleDark = () => {
     setDarkMode(!darkMode);
@@ -78,7 +88,21 @@ export default function Home() {
           </Button>
         </div>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-3">
+          {/* Model Selector */}
+          <div className="flex items-center gap-2 bg-muted/30 px-3 py-1.5 rounded-full border text-xs">
+            <Cpu className="w-3 h-3 text-mumz-purple" />
+            <select 
+              value={selectedModel} 
+              onChange={(e) => setSelectedModel(e.target.value)}
+              className="bg-transparent border-none outline-none font-medium cursor-pointer"
+            >
+              {models.map(m => (
+                <option key={m.id} value={m.id}>{m.name}</option>
+              ))}
+            </select>
+          </div>
+
           <Button
             variant="ghost"
             size="icon"
@@ -101,7 +125,11 @@ export default function Home() {
       </header>
 
       <main className="relative z-10">
-        {activeTab === "compare" ? <CompareAI /> : <ShoppingAssistant />}
+        {activeTab === "compare" ? (
+          <CompareAI selectedModel={selectedModel} />
+        ) : (
+          <ShoppingAssistant selectedModel={selectedModel} />
+        )}
       </main>
 
       {/* Footer */}

@@ -39,14 +39,26 @@ export interface AIResponse {
   arabic_output: ArabicOutput;
 }
 
+export interface LLMModel {
+  id: string;
+  name: string;
+  provider: string;
+  tier: string;
+}
+
 export async function sendChatRequest(
   text: string,
-  imageBase64?: string | null
+  imageBase64?: string | null,
+  model?: string
 ): Promise<AIResponse> {
   const res = await fetch(`${API_URL}/api/chat`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ text, image_base64: imageBase64 || null }),
+    body: JSON.stringify({ 
+      text, 
+      image_base64: imageBase64 || null,
+      model: model || null
+    }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: "Server error" }));
@@ -55,8 +67,14 @@ export async function sendChatRequest(
   return res.json();
 }
 
-export async function checkHealth(): Promise<{ status: string; ai_ready: boolean }> {
+export async function checkHealth(): Promise<{ status: string; ai_ready: boolean; provider: string }> {
   const res = await fetch(`${API_URL}/health`);
+  return res.json();
+}
+
+export async function getModels(): Promise<LLMModel[]> {
+  const res = await fetch(`${API_URL}/api/models`);
+  if (!res.ok) throw new Error("Failed to load models");
   return res.json();
 }
 
@@ -95,12 +113,17 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function sendCompareRequest(
   productIds: string[],
-  intent: string
+  intent: string,
+  model?: string
 ): Promise<ComparisonResponse> {
   const res = await fetch(`${API_URL}/api/compare`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ product_ids: productIds, intent }),
+    body: JSON.stringify({ 
+      product_ids: productIds, 
+      intent,
+      model: model || null
+    }),
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: "Server error" }));

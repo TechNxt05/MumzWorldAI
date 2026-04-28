@@ -47,10 +47,12 @@ app.add_middleware(
 class ChatRequest(BaseModel):
     text: str
     image_base64: Optional[str] = None
+    model: Optional[str] = None
 
 class CompareRequest(BaseModel):
     product_ids: List[str]
     intent: Optional[str] = None
+    model: Optional[str] = None
 
 
 # ── Routes ─────────────────────────────────────────────────────────────────
@@ -61,22 +63,27 @@ def health_check():
     provider = os.environ.get("LLM_PROVIDER", "gemini").lower()
 
     if provider == "openrouter":
-        has_key = bool(os.environ.get("OPENROUTER_API_KEY")) and os.environ.get("OPENROUTER_API_KEY") != "your_openrouter_api_key_here"
-        compare_model = os.environ.get("OPENROUTER_COMPARE_MODEL", "nvidia/llama-3.3-nemotron-super-120b-instruct:free")
-        assistant_model = os.environ.get("OPENROUTER_ASSISTANT_MODEL", "google/gemma-3-27b-it:free")
+        has_key = bool(os.environ.get("OPENROUTER_API_KEY"))
     else:
-        has_key = bool(os.environ.get("GEMINI_API_KEY")) and os.environ.get("GEMINI_API_KEY") != "your_gemini_api_key_here"
-        compare_model = "gemini-1.5-pro"
-        assistant_model = "gemini-2.5-flash"
+        has_key = bool(os.environ.get("GEMINI_API_KEY"))
 
     return {
         "status": "ok",
         "service": "Mumzworld AI Copilot",
         "ai_ready": has_key,
         "provider": provider,
-        "compare_model": compare_model,
-        "assistant_model": assistant_model,
     }
+
+@app.get("/api/models")
+def get_models():
+    """Return a curated list of top models for the frontend."""
+    return [
+        {"id": "google/gemini-3.1-pro-preview", "name": "Gemini 3.1 Pro (Best)", "provider": "google", "tier": "premium"},
+        {"id": "anthropic/claude-sonnet-4.6", "name": "Claude 4.6 Sonnet (Smart)", "provider": "anthropic", "tier": "premium"},
+        {"id": "qwen/qwen3.5-plus-02-15", "name": "Qwen 3.5 Plus (Bilingual)", "provider": "qwen", "tier": "fast"},
+        {"id": "google/gemini-3-flash-preview", "name": "Gemini 3 Flash (Fast)", "provider": "google", "tier": "fast"},
+        {"id": "openrouter/free", "name": "Free Models Router", "provider": "openrouter", "tier": "free"},
+    ]
 
 
 @app.post("/api/chat")
@@ -90,7 +97,7 @@ def chat(request: ChatRequest):
 
     logger.info("Processing chat request: %s...", request.text[:80])
     try:
-        result = process_request(request.text, request.image_base64)
+        result = process_request(request.text, request.image_base64, request.model)
         return result
     except Exception as e:
         logger.exception("Error processing request")
@@ -127,7 +134,7 @@ def compare(request: CompareRequest):
 
     logger.info("Processing compare request for %s products.", len(request.product_ids))
     try:
-        result = compare_products(request.product_ids, request.intent)
+        result = compare_products(request.product_ids, request.intent, request.model)
         return result
     except Exception as e:
         logger.exception("Error processing comparison")

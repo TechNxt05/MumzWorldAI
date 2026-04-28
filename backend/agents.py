@@ -183,7 +183,7 @@ def _mock_response() -> dict:
 
 # ── Main Agent Functions ──────────────────────────────────────────────────────
 
-def process_request(text: str, image_base64: Optional[str] = None) -> dict:
+def process_request(text: str, image_base64: Optional[str] = None, model: Optional[str] = None) -> dict:
     """
     Process a user request through the AI agent pipeline.
 
@@ -192,17 +192,18 @@ def process_request(text: str, image_base64: Optional[str] = None) -> dict:
     Args:
         text: The user's natural-language input.
         image_base64: Optional base64-encoded image data.
+        model: Specific model ID to use (overrides env defaults).
 
     Returns:
         A dict matching the AIResponse schema.
     """
     if LLM_PROVIDER == "openrouter":
-        return _process_request_openrouter(text, image_base64)
+        return _process_request_openrouter(text, image_base64, model)
     else:
-        return _process_request_gemini(text, image_base64)
+        return _process_request_gemini(text, image_base64, model)
 
 
-def _process_request_gemini(text: str, image_base64: Optional[str] = None) -> dict:
+def _process_request_gemini(text: str, image_base64: Optional[str] = None, model: Optional[str] = None) -> dict:
     """Process request using Gemini API directly."""
     client = _get_gemini_client()
 
@@ -216,6 +217,9 @@ def _process_request_gemini(text: str, image_base64: Optional[str] = None) -> di
     )
 
     contents: list = [prompt]
+    
+    # Use provided model or default
+    target_model = model or "gemini-2.5-flash"
 
     # If an image was uploaded, attach it as a multimodal part
     if image_base64:
@@ -238,7 +242,7 @@ def _process_request_gemini(text: str, image_base64: Optional[str] = None) -> di
     # Call Gemini with structured output
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model=target_model,
             contents=contents,
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
@@ -257,12 +261,14 @@ def _process_request_gemini(text: str, image_base64: Optional[str] = None) -> di
         return mock
 
 
-def _process_request_openrouter(text: str, image_base64: Optional[str] = None) -> dict:
+def _process_request_openrouter(text: str, image_base64: Optional[str] = None, model: Optional[str] = None) -> dict:
     """Process request using OpenRouter (OpenAI-compatible API)."""
     client = _get_openrouter_client()
 
     if client is None:
         return _mock_response()
+
+    target_model = model or OPENROUTER_ASSISTANT_MODEL
 
     schema_str = _pydantic_schema_to_prompt(AIResponse)
     system_prompt = f"""{SYSTEM_PROMPT}
@@ -279,7 +285,7 @@ Do NOT add any text outside the JSON. Return ONLY the JSON object."""
     try:
         data = _call_openrouter(
             client=client,
-            model=OPENROUTER_ASSISTANT_MODEL,
+            model=target_model,
             system_prompt=system_prompt,
             user_prompt=user_prompt,
             temperature=0.7,
@@ -296,7 +302,7 @@ Do NOT add any text outside the JSON. Return ONLY the JSON object."""
 
 # ── Compare Products ──────────────────────────────────────────────────────────
 
-def compare_products(product_ids: list[str], user_intent: str) -> dict:
+def compare_products(product_ids: list[str], user_intent: str, model: Optional[str] = None) -> dict:
     """
     Compare multiple products based on a user intent using the LLM.
 
@@ -305,6 +311,7 @@ def compare_products(product_ids: list[str], user_intent: str) -> dict:
     Args:
         product_ids: List of product IDs to compare.
         user_intent: Natural language intent.
+        model: Specific model ID to use.
 
     Returns:
         A dict matching the ComparisonResponse schema.
@@ -326,17 +333,19 @@ def compare_products(product_ids: list[str], user_intent: str) -> dict:
     product_data_str = json.dumps(selected_products, indent=2, ensure_ascii=False)
 
     if LLM_PROVIDER == "openrouter":
-        return _compare_products_openrouter(product_ids, user_intent, product_data_str)
+        return _compare_products_openrouter(product_ids, user_intent, product_data_str, model)
     else:
-        return _compare_products_gemini(product_ids, user_intent, product_data_str)
+        return _compare_products_gemini(product_ids, user_intent, product_data_str, model)
 
 
-def _compare_products_gemini(product_ids: list[str], user_intent: str, product_data_str: str) -> dict:
+def _compare_products_gemini(product_ids: list[str], user_intent: str, product_data_str: str, model: Optional[str] = None) -> dict:
     """Compare products using Gemini API directly."""
     client = _get_gemini_client()
 
     if client is None:
         return _mock_comparison_response(product_ids, user_intent)
+
+    target_model = model or "gemini-1.5-pro"
 
     prompt = COMPARISON_SYSTEM_PROMPT.format(
         product_data=product_data_str,
@@ -345,7 +354,7 @@ def _compare_products_gemini(product_ids: list[str], user_intent: str, product_d
 
     try:
         response = client.models.generate_content(
-            model="gemini-1.5-pro",
+            model=target_model,
             contents=[prompt],
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
@@ -360,12 +369,14 @@ def _compare_products_gemini(product_ids: list[str], user_intent: str, product_d
         raise e
 
 
-def _compare_products_openrouter(product_ids: list[str], user_intent: str, product_data_str: str) -> dict:
+def _compare_products_openrouter(product_ids: list[str], user_intent: str, product_data_str: str, model: Optional[str] = None) -> dict:
     """Compare products using OpenRouter (OpenAI-compatible API)."""
     client = _get_openrouter_client()
 
     if client is None:
         return _mock_comparison_response(product_ids, user_intent)
+
+    target_model = model or OPENROUTER_COMPARE_MODEL
 
     schema_str = _pydantic_schema_to_prompt(ComparisonResponse)
 
@@ -391,7 +402,7 @@ Rules:
     try:
         data = _call_openrouter(
             client=client,
-            model=OPENROUTER_COMPARE_MODEL,
+            model=target_model,
             system_prompt=system_prompt,
             user_prompt=user_prompt,
             temperature=0.4,
