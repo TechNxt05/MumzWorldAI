@@ -1,0 +1,340 @@
+[
+  {
+    "product_id": "ST-001",
+    "title_en": "Babyzen YOYO2 Stroller",
+    "title_ar": "عربة أطفال يويو2 من بيبي زين",
+    "brand": "Babyzen",
+    "category": "stroller",
+    "price_aed": 1999,
+    "spec_blocks_raw": "Weight: 6.2 kg. Suitable from 6 months up to 22 kg. Dimensions folded: 52 x 44 x 18 cm. Cabin luggage size. Premium frame.",
+    "description_raw": "The YOYO2 stroller folds and unfolds in a moment, can be worn over the shoulder and tucks in anywhere. Catch the subway, get on a bus, jump in a taxi or fly to the other side of the world!",
+    "pros_raw": ["Extremely compact", "Lightweight", "Can be taken as cabin luggage"],
+    "cons_raw": ["Requires separate newborn pack for 0-6 months", "Expensive accessories"],
+    "attributes_normalized": {
+      "weight_kg": 6.2,
+      "fold_type": "compact/one-hand",
+      "age_range": "6 months to 22 kg",
+      "newborn_friendly": false,
+      "cabin_friendly": true,
+      "storage_capacity": "Medium (5 kg)",
+      "wheel_type": "Small/City"
+    },
+    "evidence_map": {
+      "weight_kg": "Weight: 6.2 kg.",
+      "cabin_friendly": "Cabin luggage size."
+    },
+    "review_snippets": [
+      "Perfect for our trips, fits right in the overhead bin.",
+      "Folds beautifully but a bit pricey when you add everything up."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-002",
+    "title_en": "Chicco Liteway Stroller",
+    "title_ar": "عربة أطفال لايت واي من شيكو",
+    "brand": "Chicco",
+    "category": "stroller",
+    "price_aed": 450,
+    "spec_blocks_raw": "Weight approx 7.5 kg. Multi-position recline. Suitable from birth to 15kg.",
+    "description_raw": "Practical and lightweight stroller suitable for everyday walks.",
+    "pros_raw": ["Affordable", "Full recline for naps"],
+    "cons_raw": ["Umbrella fold is long", "Not very smooth on rough terrain"],
+    "attributes_normalized": {
+      "weight_kg": 7.5,
+      "fold_type": "umbrella",
+      "age_range": "0 to 15 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": false,
+      "storage_capacity": "Small",
+      "wheel_type": "Basic/Plastic"
+    },
+    "evidence_map": {
+      "newborn_friendly": "Suitable from birth"
+    },
+    "review_snippets": [
+      "Great for the price but the umbrella fold makes it hard to fit in a small trunk."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-003",
+    "title_en": "Graco Modes Element Stroller",
+    "title_ar": "عربة أطفال مودز إليمنت من جراكو",
+    "brand": "Graco",
+    "category": "stroller",
+    "price_aed": 890,
+    "spec_blocks_raw": "Reversible seat. Parent tray. Child tray. Stroller weight: 9.5kg.",
+    "description_raw": "3 strollers in 1: Infant Car Seat Carrier, Infant Stroller, and Toddler Stroller.",
+    "pros_raw": ["Reversible seat", "Lots of storage", "Cupholders included"],
+    "cons_raw": ["Heavy", "Bulky when folded"],
+    "attributes_normalized": {
+      "weight_kg": 9.5,
+      "fold_type": "one-hand standing fold",
+      "age_range": "0 to 22 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": false,
+      "storage_capacity": "Large",
+      "wheel_type": "Medium/All-terrain"
+    },
+    "evidence_map": {
+      "storage_capacity": "Lots of storage mentioned in pros"
+    },
+    "review_snippets": [
+      "I love that my baby can face me, but man it is heavy to lift into the SUV."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-004",
+    "title_en": "Joie Pact Lite",
+    "title_ar": "عربة أطفال باكت لايت من جوي",
+    "brand": "Joie",
+    "category": "stroller",
+    "price_aed": 650,
+    "spec_blocks_raw": "Ultra lightweight at 5.5kg. Fast one hand fold. Custom carry bag included.",
+    "description_raw": "A pint-sized pram that's a perfect travel companion.",
+    "pros_raw": ["Super light", "Comes with a carry bag"],
+    "cons_raw": ["Seat doesn't sit completely upright", "Basket is tiny"],
+    "attributes_normalized": {
+      "weight_kg": 5.5,
+      "fold_type": "ultra-compact",
+      "age_range": "0 to 15 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": true,
+      "storage_capacity": "Very Small",
+      "wheel_type": "Small"
+    },
+    "evidence_map": {
+      "weight_kg": "Ultra lightweight at 5.5kg."
+    },
+    "review_snippets": [
+      "Amazing for quick taxi rides and flights. Basket fits barely anything though."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-005",
+    "title_en": "Maxi-Cosi Lara2",
+    "title_ar": "عربة أطفال لارا2 من ماكسي كوزي",
+    "brand": "Maxi-Cosi",
+    "category": "stroller",
+    "price_aed": 999,
+    "spec_blocks_raw": "Ultra-compact travel stroller. Birth to 4 years (22kg). Weight 6.4 kg. Two storage baskets.",
+    "description_raw": "Ready for small spaces and big adventures.",
+    "pros_raw": ["Two baskets", "Breathable seat fabric"],
+    "cons_raw": ["Wheels get stuck on grass"],
+    "attributes_normalized": {
+      "weight_kg": 6.4,
+      "fold_type": "compact/flash",
+      "age_range": "0 to 22 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": true,
+      "storage_capacity": "Medium (two baskets)",
+      "wheel_type": "Small/City"
+    },
+    "evidence_map": {
+      "storage_capacity": "Two storage baskets."
+    },
+    "review_snippets": [
+      "The two baskets are a game changer for organizing baby stuff and my stuff."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-006",
+    "title_en": "Bugaboo Butterfly",
+    "title_ar": "عربة بوجابو بترفلاي",
+    "brand": "Bugaboo",
+    "category": "stroller",
+    "price_aed": 2200,
+    "spec_blocks_raw": "1-second fold. Weight 7.3 kg. IATA compatible.",
+    "description_raw": "The city stroller that folds in one second. Designed for travel and city life.",
+    "pros_raw": ["Extremely fast fold", "Premium quality", "Large underseat basket for a travel stroller"],
+    "cons_raw": ["Expensive", "No bumper bar included"],
+    "attributes_normalized": {
+      "weight_kg": 7.3,
+      "fold_type": "1-second compact",
+      "age_range": "6 months to 22 kg",
+      "newborn_friendly": false,
+      "cabin_friendly": true,
+      "storage_capacity": "Large (8 kg limit)",
+      "wheel_type": "Medium/City"
+    },
+    "evidence_map": {
+      "fold_type": "1-second fold."
+    },
+    "review_snippets": [
+      "Best travel stroller ever. The fold is basically magic."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-007",
+    "title_en": "Cybex Priam",
+    "title_ar": "عربة أطفال برايم من سايبكس",
+    "brand": "Cybex",
+    "category": "stroller",
+    "price_aed": 4500,
+    "spec_blocks_raw": "Luxurious design. Weight: 12.9 kg. All-wheel suspension. Reversible seat.",
+    "description_raw": "The Priam is the jewel in the crown of the CYBEX Platinum range.",
+    "pros_raw": ["Gorgeous design", "Very smooth ride", "One-pull harness"],
+    "cons_raw": ["Very heavy", "Extremely expensive"],
+    "attributes_normalized": {
+      "weight_kg": 12.9,
+      "fold_type": "one-hand standing fold",
+      "age_range": "0 to 22 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": false,
+      "storage_capacity": "Large",
+      "wheel_type": "Large/All-terrain"
+    },
+    "evidence_map": {
+      "weight_kg": "Weight: 12.9 kg."
+    },
+    "review_snippets": [
+      "Looks stunning, everywhere I go people ask about it. But I struggle to lift it into the boot."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-008",
+    "title_en": "UPPAbaby Vista V2",
+    "title_ar": "عربة أطفال فيستا في 2 من أبابيبي",
+    "brand": "UPPAbaby",
+    "category": "stroller",
+    "price_aed": 4900,
+    "spec_blocks_raw": "Converts to double. Bassinet included. 12.4 kg weight.",
+    "description_raw": "One for all. The VISTA’s intuitive design allows for multiple configurations, making transporting a second and third child a breeze.",
+    "pros_raw": ["Grows with family", "Massive basket", "Bassinet approved for overnight sleep"],
+    "cons_raw": ["Takes up a lot of trunk space", "Heavy"],
+    "attributes_normalized": {
+      "weight_kg": 12.4,
+      "fold_type": "two-step standing fold",
+      "age_range": "0 to 22 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": false,
+      "storage_capacity": "Extra Large (13.6 kg limit)",
+      "wheel_type": "Large/All-terrain"
+    },
+    "evidence_map": {
+      "newborn_friendly": "Bassinet included."
+    },
+    "review_snippets": [
+      "The basket can fit an entire grocery run! Perfect for apartment living if you walk to the store."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-009",
+    "title_en": "Nuna TRVL",
+    "title_ar": "عربة السفر ترافل من نونا",
+    "brand": "Nuna",
+    "category": "stroller",
+    "price_aed": 1800,
+    "spec_blocks_raw": "Self-folding. Weight 6.2 kg. Magnetic buckle.",
+    "description_raw": "Out and about with a little one is easy with the TRVL stroller.",
+    "pros_raw": ["Self-folds at the push of a button", "Magnetic buckle is amazing", "Luxurious fabrics"],
+    "cons_raw": ["Slightly larger than other travel strollers when folded"],
+    "attributes_normalized": {
+      "weight_kg": 6.2,
+      "fold_type": "auto-fold",
+      "age_range": "0 to 22 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": true,
+      "storage_capacity": "Medium",
+      "wheel_type": "Medium/City"
+    },
+    "evidence_map": {
+      "fold_type": "Self-folding."
+    },
+    "review_snippets": [
+      "The self-fold is not a gimmick, it actually works and saves my back."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-010",
+    "title_en": "Doona Infant Car Seat & Stroller",
+    "title_ar": "مقعد سيارة وعربة أطفال من دونا",
+    "brand": "Doona",
+    "category": "stroller",
+    "price_aed": 2100,
+    "spec_blocks_raw": "Integrated wheels. Weight: 7.5 kg. 0-13kg.",
+    "description_raw": "The world’s first complete and fully integrated travel system.",
+    "pros_raw": ["Car seat turns into stroller instantly", "Perfect for taxis", "No need for a base in taxis"],
+    "cons_raw": ["Heavy to carry as a car seat", "No storage basket", "Low to the ground"],
+    "attributes_normalized": {
+      "weight_kg": 7.5,
+      "fold_type": "converts to car seat",
+      "age_range": "0 to 13 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": true,
+      "storage_capacity": "None",
+      "wheel_type": "Small"
+    },
+    "evidence_map": {
+      "storage_capacity": "No storage basket"
+    },
+    "review_snippets": [
+      "If you live in a city and take Ubers, this is a must-have."
+    ],
+    "missing_fields": []
+  },
+  {
+    "product_id": "ST-011",
+    "title_en": "Maclaren Quest Arc",
+    "title_ar": "عربة كويست آرك من ماكلارين",
+    "brand": "Maclaren",
+    "category": "stroller",
+    "price_aed": 1200,
+    "spec_blocks_raw": "Weight: ",
+    "description_raw": "A lightweight and sporty umbrella stroller.",
+    "pros_raw": ["Durable", "Great steering"],
+    "cons_raw": ["Umbrella fold takes up length"],
+    "attributes_normalized": {
+      "weight_kg": null,
+      "fold_type": "umbrella",
+      "age_range": "0 to 25 kg",
+      "newborn_friendly": true,
+      "cabin_friendly": false,
+      "storage_capacity": "Small",
+      "wheel_type": "Small/Double"
+    },
+    "evidence_map": {
+      "fold_type": "umbrella fold takes up length"
+    },
+    "review_snippets": [
+      "Classic stroller. Lasts forever but a bit outdated design."
+    ],
+    "missing_fields": ["weight_kg", "spec_blocks_raw"]
+  },
+  {
+    "product_id": "ST-012",
+    "title_en": "Hauck Runner 2",
+    "title_ar": "عربة رانر 2 من هوك",
+    "brand": "Hauck",
+    "category": "stroller",
+    "price_aed": 750,
+    "spec_blocks_raw": "Large pneumatic tires. Max 25 kg. Weight 11.1 kg.",
+    "description_raw": "Three-wheeler for sporty parents. Suitable for all terrains.",
+    "pros_raw": ["Great for jogging", "Air-filled tires", "High weight limit"],
+    "cons_raw": ["Very large even when folded", "Tires can puncture"],
+    "attributes_normalized": {
+      "weight_kg": 11.1,
+      "fold_type": "two-hand fold",
+      "age_range": "6 months to 25 kg",
+      "newborn_friendly": false,
+      "cabin_friendly": false,
+      "storage_capacity": "Large",
+      "wheel_type": "Large/Pneumatic"
+    },
+    "evidence_map": {
+      "wheel_type": "Large pneumatic tires."
+    },
+    "review_snippets": [
+      "Amazing for off-road trails and beach walks."
+    ],
+    "missing_fields": []
+  }
+]
